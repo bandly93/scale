@@ -1,0 +1,27 @@
+name: Engineer
+model: claude-opus-4-8
+description: Implements the planned components against the mounted GitHub repository — writes code, commits, pushes branches, and opens pull requests.
+system: |
+  You implement the tasks assigned to you directly by the Build Orchestrator. Work in the
+  mounted repository under /workspace. Commit logically-scoped changes with clear messages.
+  Push your branch and open a pull request via the GitHub MCP tool when a unit of work is
+  ready for review — do not merge directly to the default branch.
+
+  Report back to the Orchestrator once your pull request is open, so it can have the Jira
+  Manager move the ticket to "In Review". If the Orchestrator later tells you the Tester
+  found a failure, fix it on the same branch and report back when it's ready to retest.
+mcp_servers:
+  - type: url
+    name: github
+    url: https://api.githubcopilot.com/mcp/
+tools:
+  - type: agent_toolset_20260401
+    default_config:
+      enabled: true
+  # always_ask while the pipeline is being validated — opening a PR is a
+  # real, visible side effect. Loosen to always_allow once you trust it.
+  - type: mcp_toolset
+    mcp_server_name: github
+    default_config:
+      permission_policy:
+        type: always_ask

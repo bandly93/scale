@@ -1,0 +1,26 @@
+{
+  "name": "@scale/agents",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "setup": "tsx --env-file=.env src/setup.ts",
+    "setup:vault": "tsx --env-file=.env src/setup-vault.ts",
+    "get-jira-token": "tsx --env-file=.env src/get-jira-token.ts",
+    "test-run": "tsx --env-file=.env src/test-run.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.105.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

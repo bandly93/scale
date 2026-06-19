@@ -1,0 +1,5 @@
+name: sysdesign-game-env
+config:
+  type: cloud
+  networking:
+    type: unrestricted
